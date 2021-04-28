@@ -60,12 +60,12 @@ export const CustomTableCell = styled(TableCell)`
   Button {
     margin: 0 5px;
   }
-  #EditBtn {
+  .EditBtn {
     background-color: #b6ccfe;
     color: #03045e;
   }
 
-  #DeleteBtn {
+  .DeleteBtn {
     color: #fff;
     background-color: #ff3330;
   }

@@ -55,13 +55,20 @@ const VideosTable: React.FC = () => {
 
   return (
     <>
-      <SearchForm onSubmit={() => searchVideo(searchPhrase)}>
-        <input value={searchPhrase} onChange={(e) => setSearchPhrase(e.target.value)} placeholder={"search video's name"} />
-        <Button onClick={() => searchVideo(searchPhrase)}>Search</Button>
+      <SearchForm id={'searchForm'} onSubmit={() => searchVideo(searchPhrase)}>
+        <input
+          id={'searchField'}
+          value={searchPhrase}
+          onChange={(e) => setSearchPhrase(e.target.value)}
+          placeholder={"search video's name"}
+        />
+        <Button id="searchBtn" onClick={() => searchVideo(searchPhrase)}>
+          Search
+        </Button>
         {searchIsSet ? (
           <SearchedTag>
             <div>{searchPhrase}</div>
-            <svg onClick={() => resetSearch()} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512.001">
+            <svg id={'resetSearch'} onClick={() => resetSearch()} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512.001">
               <path d="M284.284 256L506.142 34.142c7.811-7.81 7.811-20.474 0-28.284-7.811-7.811-20.474-7.811-28.284 0L256 227.716 34.142 5.858c-7.811-7.811-20.474-7.811-28.284 0-7.811 7.81-7.811 20.474 0 28.284L227.716 256 5.858 477.858c-7.811 7.811-7.811 20.474 0 28.284 7.81 7.81 20.473 7.811 28.284 0L256 284.284l221.858 221.858c7.81 7.81 20.473 7.811 28.284 0s7.811-20.474 0-28.284L284.284 256z" />
             </svg>
           </SearchedTag>
@@ -82,7 +89,7 @@ const VideosTable: React.FC = () => {
               <TableCell>Options</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody key={key}>
+          <TableBody id={'videosInfoTable'} key={key}>
             {displayingResult.length > 0
               ? displayingResult.map((video: ProcessedVideo, index: number) => (
                   <TableRow key={video.id}>
@@ -94,10 +101,10 @@ const VideosTable: React.FC = () => {
                     <TableCell>{`${Object.keys(video.format)[0]}${' '}${video.format[Object.keys(video.format)[0]].res}`}</TableCell>
                     <TableCell>{video.release}</TableCell>
                     <CustomTableCell>
-                      <Button id="EditBtn" onClick={() => history.push(`/edit/${video.id}`)}>
+                      <Button className="EditBtn" onClick={() => history.push(`/edit/${video.id}`)}>
                         Edit
                       </Button>
-                      <Button id="DeleteBtn" onClick={() => deleteVideo(index)}>
+                      <Button className="DeleteBtn" onClick={() => deleteVideo(index)}>
                         Delete
                       </Button>
                     </CustomTableCell>

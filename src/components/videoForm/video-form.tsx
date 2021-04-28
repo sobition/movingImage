@@ -100,6 +100,7 @@ const VideoForm: React.FC = () => {
             <label>Video name</label>
             <div>
               <input
+                id={'videoName'}
                 value={formValues.name}
                 onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
                 placeholder={'Video name'}
@@ -113,7 +114,7 @@ const VideoForm: React.FC = () => {
             <div>
               <select
                 name="author"
-                id="author"
+                id="videoAuthor"
                 value={formValues.author}
                 onChange={(e) => setFormValues({ ...formValues, author: e.target.value })}>
                 <option value="" disabled selected hidden>
@@ -131,7 +132,7 @@ const VideoForm: React.FC = () => {
             <div>
               <select
                 name="categories"
-                id="categories"
+                id="videoCategories"
                 value={formValues.categories}
                 onChange={(e) =>
                   setFormValues({ ...formValues, categories: Array.from(e.target.selectedOptions, (option) => option.value) })
@@ -150,7 +151,7 @@ const VideoForm: React.FC = () => {
           </EditInputGroup>
 
           <ButtonContainer>
-            <Button variant="contained" color="primary" onClick={() => (ValidateForm() ? SubmitForm() : '')}>
+            <Button id="SubmitBtn" variant="contained" color="primary" onClick={() => (ValidateForm() ? SubmitForm() : '')}>
               {location.pathname === '/new' ? 'Add' : 'Edit'}
             </Button>
             <Button id="CancelBtn" onClick={() => history.push('/')}>

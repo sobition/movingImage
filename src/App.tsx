@@ -24,7 +24,7 @@ const App: React.FC = () => {
         <CustomToolbar className={'toolbar-container'}>
           <Typography variant="h6">Videos</Typography>
           {location.pathname === '/' ? (
-            <NewVideoLink className={'new-video-link'} to={'/new'}>
+            <NewVideoLink id={"AddVideoBtn"} className={'new-video-link'} to={'/new'}>
               Add Video
             </NewVideoLink>
           ) : (
