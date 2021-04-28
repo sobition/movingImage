@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import { createContext } from 'react';
 
 export const VideosContext = createContext<any>(null);
 
