@@ -9,6 +9,9 @@ export interface Video {
   name: string;
 }
 
+export interface NormalisedCateory {
+  [key: number]: string;
+}
 export interface Author {
   id: number;
   name: string;
