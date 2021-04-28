@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const EditInputGroup = styled.div`
   margin: 16px 0;
   font-size: 1.2rem;
@@ -38,11 +37,11 @@ export const EditInputGroup = styled.div`
     }
   }
 
-  #author {
+  #videoAuthor {
     background: #fff;
   }
 
-  #categories {
+  #videoCategories {
     height: 100px;
   }
 `;

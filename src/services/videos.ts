@@ -1,13 +1,8 @@
 import { getCategories } from './categories';
 import { getAuthors } from './authors';
-import { Author, ProcessedVideo, VideoFormat } from '../common/interfaces';
+import { Author, ProcessedVideo, VideoFormat, NormalisedCateory } from '../common/interfaces';
 
-interface Cateory {
-
-  [key: number]: string;
-}
-
-const getCategoriesName = (catIdArray: number[], categoriesRef: Cateory) => {
+const getCategoriesName = (catIdArray: number[], categoriesRef: NormalisedCateory) => {
   let arr: string[] = [];
   catIdArray.forEach((catId: number) => {
     arr.push(categoriesRef[catId]);
@@ -47,7 +42,7 @@ const randomDateGenerator = () => {
 export const getVideos = (): Promise<ProcessedVideo[]> => {
   return Promise.all([getCategories(), getAuthors()]).then(([categories, authors]) => {
     let processedVideos: ProcessedVideo[] = [];
-    let categoriesRef: Cateory = {};
+    let categoriesRef: NormalisedCateory = {};
 
     categories.forEach((category) => {
       categoriesRef[category.id] = category.name;
@@ -70,4 +65,3 @@ export const getVideos = (): Promise<ProcessedVideo[]> => {
     return processedVideos;
   });
 };
-
