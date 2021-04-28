@@ -6,9 +6,8 @@ import { useLocation, useHistory, useParams } from 'react-router-dom';
 import VideosContext from '../videos-context';
 import { getVideos } from '../../services/videos';
 import { ProcessedVideo } from '../../common/interfaces';
+import { VideoCategories, VideoAuthors } from '../../common/constants';
 
-const VideoCategories = ['Criminal', 'Thriller', 'Horror', 'Drama'];
-const VideoAuthors = ['David Munch', 'Li Sun Chi', 'Steven Scorsese'];
 const VideoForm: React.FC = () => {
   const videoContextValue = useContext(VideosContext);
   let location = useLocation();
@@ -22,7 +21,6 @@ const VideoForm: React.FC = () => {
   };
 
   const typedKeys = <T,>(object: T): (keyof T)[] => Object.keys(object) as (keyof T)[];
-
 
   const [formValues, setFormValues] = useState<ProcessedVideo>({
     id: Math.ceil(Math.random() * 10 + 10),
