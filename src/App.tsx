@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AppBar, Container, Typography } from '@material-ui/core';
-import { VideosTable } from './components/videosTable/videos-table';
+import  VideosTable  from './components/videosTable/videos-table';
 import VideoForm from './components/videoForm/video-form';
 import { getVideos } from './services/videos';
 import { Route, Switch, useLocation } from 'react-router-dom';

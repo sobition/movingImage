@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, memo } from 'react';
 import { Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, Button } from '@material-ui/core';
 import { ProcessedVideo } from '../../common/interfaces';
 import { useHistory } from 'react-router-dom/';
 import VideosContext from '../videos-context';
 import { CustomisedTable, CustomTableCell, SearchForm, SearchedTag } from './video-table.style';
 
-export const VideosTable: React.FC = () => {
+const VideosTable: React.FC = () => {
   const videoContext = useContext(VideosContext);
   const [key, setKey] = useState(1);
   const [displayingResult, setDisplayingResult] = useState<ProcessedVideo[]>([]);
@@ -110,3 +110,4 @@ export const VideosTable: React.FC = () => {
     </>
   );
 };
+export default memo(VideosTable);
