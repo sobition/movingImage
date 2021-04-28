@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, Button } from '@material-ui/core';
 import { ProcessedVideo } from '../../common/interfaces';
-import { useHistory, useParams } from 'react-router-dom/';
+import { useHistory } from 'react-router-dom/';
 import VideosContext from '../videos-context';
 import { CustomisedTable, CustomTableCell, SearchForm, SearchedTag } from './video-table.style';
 
@@ -29,16 +29,21 @@ export const VideosTable: React.FC = () => {
 
   const searchVideo = (phrase: string) => {
     let result: ProcessedVideo[] = [];
-    videoContext.videos.map((video: ProcessedVideo) => {
-      if (video.name.includes(phrase)) {
-        result.push(video);
+    if (phrase) {
+      videoContext.videos.map((video: ProcessedVideo) => {
+        let videoName: string = video.name.toUpperCase();
+        if (videoName.includes(phrase.toUpperCase())) {
+          result.push(video);
+        }
+      });
+      if (result.length > 0) {
+        setDisplayingResult(result);
+        setSearchIsSet(true);
+      } else {
+        alert('No result is found. Please try something else');
       }
-    });
-    if (result.length > 0) {
-      setDisplayingResult(result);
-      setSearchIsSet(true);
     } else {
-      alert('No result is found. Please try something else');
+      alert('please enter a phrase to search');
     }
   };
 
