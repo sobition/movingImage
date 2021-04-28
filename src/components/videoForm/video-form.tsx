@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, memo } from 'react';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import { EditInputGroup, ButtonContainer } from './video-form.style';
@@ -7,18 +7,13 @@ import VideosContext from '../videos-context';
 import { getVideos } from '../../services/videos';
 import { ProcessedVideo } from '../../common/interfaces';
 import { VideoCategories, VideoAuthors } from '../../common/constants';
+import getCurrentDate from '../../utils/getCurrentDate';
 
 const VideoForm: React.FC = () => {
   const videoContextValue = useContext(VideosContext);
   let location = useLocation();
   let history = useHistory();
   const { videoId } = useParams<{ videoId: string }>();
-
-  const getCurrentDate = () => {
-    let today = new Date();
-    let date = today.getDate() + '.' + (today.getMonth() + 1) + '.' + today.getFullYear();
-    return date;
-  };
 
   const typedKeys = <T,>(object: T): (keyof T)[] => Object.keys(object) as (keyof T)[];
 
@@ -75,7 +70,7 @@ const VideoForm: React.FC = () => {
     return !invalidArray.length;
   };
 
-  const getVideoInfoData = (videosArray: any, Videoid: string) => {
+  const getVideoInfoData = (videosArray: ProcessedVideo[], Videoid: string) => {
     videosArray.every((video: ProcessedVideo) => {
       if (video.id === parseInt(Videoid)) {
         setFormValues({ ...video, release: getCurrentDate(), format: { one: { res: '1080p', size: 1000 } } });
@@ -168,4 +163,4 @@ const VideoForm: React.FC = () => {
   );
 };
 
-export default VideoForm;
+export default memo(VideoForm);
