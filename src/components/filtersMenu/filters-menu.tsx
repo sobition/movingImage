@@ -6,7 +6,7 @@ import { ProcessedVideo } from '../../common/interfaces';
 import VideosContext from '../videos-context';
 
 interface FilterMenuProps {
-  updateResult: any;
+  updateResult: React.Dispatch<React.SetStateAction<ProcessedVideo[]>>;
 }
 
 const FiltersMenu: React.FC<FilterMenuProps> = (props) => {
@@ -46,7 +46,7 @@ const FiltersMenu: React.FC<FilterMenuProps> = (props) => {
 
     switch (sortParam) {
       case 'quality':
-        newList.sort((a, b) => {
+        newList.sort((a: ProcessedVideo, b: ProcessedVideo) => {
           let qualityOfA = Object.keys(a.format)[0];
           let qualityOfB = Object.keys(b.format)[0];
 
@@ -62,7 +62,7 @@ const FiltersMenu: React.FC<FilterMenuProps> = (props) => {
         break;
 
       case 'size':
-        newList.sort((a, b) => {
+        newList.sort((a: ProcessedVideo, b: ProcessedVideo) => {
           let qualityOfA = Object.keys(a.format)[0];
           let qualityOfB = Object.keys(b.format)[0];
 
